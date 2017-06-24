@@ -13,6 +13,7 @@ namespace Proyecto_Game
         static int turno = 0;
         static String[,] Table = new string[8, 8];
         static String ListPuntaje = "";
+        static String ListTwoPuntaje = "";
         static int puntone;
         static int punttwo;
 
@@ -297,7 +298,7 @@ static void Main(string[] args)
                             case "2":  //MasterMind
 
                                 //RBRG
-                                string valores_key = "RABNM";
+                                string valores_key = "RABNM"; //key base
                                 string valor_key_random = get_key_random(valores_key);
                                  option_two = "0";
                                
@@ -319,7 +320,7 @@ static void Main(string[] args)
                                             break;
                                         case "2":
                                             //puntajes
-                                            Console.WriteLine(ListPuntaje);
+                                            Console.WriteLine(ListTwoPuntaje);
                                             break;
 
                                         case "1":
@@ -329,9 +330,10 @@ static void Main(string[] args)
                                             Console.WriteLine("Play¡¡¡: ");
 
                                             string number = "next";
-                                            while (number != "exit")
+                                            int intentos = 0;
+                                            while (number != "exit" && intentos < 10)
                                             {
-                                                Console.Write(userone + " ingresa un valor correcto : ");
+                                                Console.Write(userone + " ingresa un orden correcto según("+ valores_key + ") : ");
 
                                                 number = Console.ReadLine();
 
@@ -339,7 +341,8 @@ static void Main(string[] args)
                                                 {
                                                     //Win LOL¡¡¡
                                                     Console.WriteLine(userone + " has descubierto la respuesta. Felicidades¡¡ ");
-
+                                                    ListTwoPuntaje += "\n "+ userone + "Win: A los" + intentos + " intentos  ";
+                                                    intentos = 20; //se salta el error de intento y sale del bucle
                                                 }
                                                 else
                                                 {
@@ -354,13 +357,15 @@ static void Main(string[] args)
                                                         }else {
                                                             response += "-";
                                                         }
-                                                        
                                                     }
                                                 Console.WriteLine(response );
-
-                                                    
                                                 }
 
+                                                intentos++;
+                                                if (intentos == 10)
+                                                {
+                                                    Console.WriteLine(userone + " has gastado todos tus intento, suerte para la próxima¡¡ ");
+                                                }
                                             }
 
                                             break;
