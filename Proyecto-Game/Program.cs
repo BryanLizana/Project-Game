@@ -14,8 +14,8 @@ namespace Proyecto_Game
         static String[,] Table = new string[8, 8];
         static String ListPuntaje = "";
         static String ListTwoPuntaje = "";
-        static int puntone;
-        static int punttwo;
+        static int puntone = 0;
+        static int punttwo = 0;
 
         static string validar_ganador(string simbol, string user)
         {
@@ -73,6 +73,9 @@ namespace Proyecto_Game
             Table = new string[8, 8];
             puntone = 0;
             punttwo = 0;
+            userone = "";
+            usertwo = "";
+            
 
         }
         static String imprimir_table(string number, string simbol = "")
@@ -100,9 +103,9 @@ namespace Proyecto_Game
 
                         while (permitir == 1 && i < 7)
                         {
-                            if ((row - i) < 1)
+                            if ((row - i) < 1) //validar que la fila no sea 0 / si la fila es cero denegar pase
                             {
-                                permitir = 7;
+                                permitir = 7; 
                             }
 
                             if (Table[row - i, column] == null && permitir == 1)
@@ -221,7 +224,7 @@ static void Main(string[] args)
                                     Console.WriteLine("2.Puntajes.");
                                     Console.WriteLine("3.Return");
 
-                                    Console.Write("Enter your option: ");
+                                    Console.Write("Ingresa una opción: ");
                                      option_two = Console.ReadLine();
 
                                     switch (option_two)
@@ -236,10 +239,10 @@ static void Main(string[] args)
 
                                         case "1":
                                             //4 in line 
-                                            Console.Write("Enter UserName One (is X): ");
+                                            Console.Write("Ingresa el nombre del Primer Jugador(será X): ");
                                             userone = Console.ReadLine(); // x
 
-                                            Console.Write("Enter UserName Two (is 0): ");
+                                            Console.Write("Ingresa el nombre del Segundo Jugador(será 0): ");
                                             usertwo = Console.ReadLine(); // 0
 
                                             Console.WriteLine("Play¡¡¡: ");
@@ -251,7 +254,7 @@ static void Main(string[] args)
                                             {
                                                 string user = (turno == 0) ? usertwo : userone;
 
-                                                Console.Write(user + " ingresa un valor entre 1 and 7 : ");
+                                                Console.Write(user + " ingresa un valor entre 1 y 7 : ");
 
                                                  number = Console.ReadLine();
 
@@ -282,7 +285,7 @@ static void Main(string[] args)
                                                 catch (Exception)
                                                 {
                                                     //el valor no es un número
-                                                    Console.WriteLine("El valor ingresado no es un número");
+                                                    Console.WriteLine("El valor ingresado no es un número¡¡");
 
                                                 }
                                             }
@@ -310,7 +313,7 @@ static void Main(string[] args)
                                     Console.WriteLine("2.Puntajes.");
                                     Console.WriteLine("3.Return");
 
-                                    Console.Write("Enter your option: ");
+                                    Console.Write("Ingresa una opción: ");
                                     option_two = Console.ReadLine();
 
                                     switch (option_two)
@@ -325,7 +328,7 @@ static void Main(string[] args)
 
                                         case "1":
                                             //4 in line 
-                                            Console.Write("Enter UserName: ");
+                                            Console.Write("Ingresa un nombre: ");
                                             userone = Console.ReadLine(); // x
                                             Console.WriteLine("Play¡¡¡: ");
 
@@ -333,7 +336,7 @@ static void Main(string[] args)
                                             int intentos = 0;
                                             while (number != "exit" && intentos < 10)
                                             {
-                                                Console.Write(userone + " ingresa un orden correcto según("+ valores_key + ") : ");
+                                                Console.Write(userone + " ingresa descubrir el orden. Valores de ayuda ("+ valores_key + ") : ");
 
                                                 number = Console.ReadLine();
 
