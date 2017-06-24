@@ -50,9 +50,14 @@ namespace Proyecto_Game
 
                             if (cantidad_vertical == 4 || cantidad_horizontal == 4)
                             {
-                                Console.WriteLine("Winnn " + user + "( " + simbol + " )");
                                 int point = (simbol == "x") ? puntone : punttwo;
-                                ListPuntaje = ListPuntaje + "\n " + user + " win: " + point + "puntos";
+                                Console.WriteLine("Game Over¡¡");
+                                Console.WriteLine("Winnn " + user + "( " + simbol + " ) A los " + point + " intentos");
+                                ListPuntaje = ListPuntaje + "\n " + user + " win: " + point + " intentos";
+
+                                //ListPuntaje = ListPuntaje + "\n one " + punttwo + " -- tw: " + puntone + "--";
+                                Console.WriteLine("Presione cualquier tecla para volver al menú. ");
+                                Console.ReadKey();
                                 return "1";
                             }
 
@@ -103,10 +108,10 @@ namespace Proyecto_Game
 
                         while (permitir == 1 && i < 7)
                         {
-                            if ((row - i) < 1) //validar que la fila no sea 0 / si la fila es cero denegar pase
-                            {
-                                permitir = 7; 
-                            }
+                            //if ((row - i) < 1) //validar que la fila no sea 0 / si la fila es cero denegar pase
+                            //{
+                            //    permitir = 7; 
+                            //}
 
                             if (Table[row - i, column] == null && permitir == 1)
                             {
@@ -124,11 +129,16 @@ namespace Proyecto_Game
             }
 
             //imprimir table
+            int espacio_in_game = 0;
             for (int row = 0; row < 7; row++)
             {
 
                 for (int column = 0; column < 7; column++)
                 {
+                    if (Table[row, column] != null)
+                    {
+                        espacio_in_game++;
+                    }
                     Console.Write(Table[row, column] + " | ");
                 }
 
@@ -149,6 +159,21 @@ namespace Proyecto_Game
 
                 return "exit";
             }
+
+
+
+            if (espacio_in_game >= 49) //row por columns
+
+            {
+                cleartable();
+                Console.WriteLine("El juego ha terminado y queda como empate");
+                Console.WriteLine("Presione cualquier tecla para volver al menú. ");
+                Console.ReadKey();
+                return "exit";
+
+
+            }
+
 
             return "next";
 
@@ -234,7 +259,9 @@ static void Main(string[] args)
                                             break;
                                         case "2":
                                             //puntajes
-                                            Console.WriteLine(ListPuntaje);                                           
+                                            Console.WriteLine(ListPuntaje);
+                                            Console.WriteLine("Presione cualquier tecla para volver al menú. ");
+                                            Console.ReadKey();
                                             break;
 
                                         case "1":
@@ -282,11 +309,13 @@ static void Main(string[] args)
                                                         number = imprimir_table(number, simbol);
                                                     }
                                                 }
-                                                catch (Exception)
+                                                catch (Exception ex)
                                                 {
-                                                    //el valor no es un número
-                                                    Console.WriteLine("El valor ingresado no es un número¡¡");
+                                                    
+                                                    //el valor no es un número o no maás valores permitidos
+                                                    Console.WriteLine( ex.Message);
 
+                                                    
                                                 }
                                             }
 
@@ -324,6 +353,8 @@ static void Main(string[] args)
                                         case "2":
                                             //puntajes
                                             Console.WriteLine(ListTwoPuntaje);
+                                            Console.WriteLine("Presione cualquier tecla para volver al menú. ");
+                                            Console.ReadKey();
                                             break;
 
                                         case "1":
@@ -336,15 +367,17 @@ static void Main(string[] args)
                                             int intentos = 0;
                                             while (number != "exit" && intentos < 10)
                                             {
-                                                Console.Write(userone + " ingresa descubrir el orden. Valores de ayuda ("+ valores_key + ") : ");
+
+                                                Console.Write(userone + "  descubre el orden (Sólo ingresa 5 caracteres). Valores de ayuda (R A B N M H U Y) : ");
 
                                                 number = Console.ReadLine();
+                                                intentos++;
 
                                                 if ( number == valor_key_random)
                                                 {
                                                     //Win LOL¡¡¡
                                                     Console.WriteLine(userone + " has descubierto la respuesta. Felicidades¡¡ ");
-                                                    ListTwoPuntaje += "\n "+ userone + "Win: A los" + intentos + " intentos  ";
+                                                    ListTwoPuntaje += "\n "+ userone + " Win: A los " + intentos + " intentos  ";
                                                     intentos = 20; //se salta el error de intento y sale del bucle
                                                 }
                                                 else
@@ -364,7 +397,6 @@ static void Main(string[] args)
                                                 Console.WriteLine(response );
                                                 }
 
-                                                intentos++;
                                                 if (intentos == 10)
                                                 {
                                                     Console.WriteLine(userone + " has gastado todos tus intento, suerte para la próxima¡¡ ");
