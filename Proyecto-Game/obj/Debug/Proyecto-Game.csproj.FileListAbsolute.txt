@@ -1,0 +1,6 @@
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\bin\Debug\Proyecto-Game.exe.config
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\bin\Debug\Proyecto-Game.exe
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\bin\Debug\Proyecto-Game.pdb
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\obj\Debug\Proyecto-Game.csprojResolveAssemblyReference.cache
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\obj\Debug\Proyecto-Game.exe
+C:\Users\BL-PC\Desktop\Proyecto-Game\Proyecto-Game\obj\Debug\Proyecto-Game.pdb
